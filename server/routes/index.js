@@ -10,10 +10,10 @@ require('dotenv').config();
 //     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 // });
 
-
 const client_id = '89e77b4690024094929f9be09292347a';
 const redirect_uri = 'http://localhost:3001/callback';
 
+// Get User to Authorize Access to Spotify Account
 router.get('/login', function(req, res) {
   
   let state = generateRandomString(16);
@@ -29,6 +29,7 @@ router.get('/login', function(req, res) {
     }));
 });
 
+// Retrieve User Access Token from spotify
 router.get('/callback', function(req, res) {
   let code = req.query.code || null;
   let state = req.query.state || null;
